@@ -1,0 +1,58 @@
+<?php
+namespace Pokedex\Form;
+
+use Zend\Form\Form;
+use Zend\Form\Element;
+//use Pokedex\Entity\Hydrator\PostHydrator;
+//use Pokedex\Entity\Hydrator\CategoryHydrator;
+use Zend\Hydrator\Aggregate\AggregateHydrator;
+
+class Add extends Form
+{
+    public function __construct()
+    {
+        parent::__construct('add');
+
+//        $hydrator = new AggregateHydrator();
+//        $hydrator->add(new PostHydrator());
+//        $hydrator->add(new CategoryHydrator());
+//
+//        $this->setHydrator($hydrator);
+
+        $idPokemon = new Element\Text('id_pokemon');
+        $idPokemon->setLabel('Id Pokemon');
+        $idPokemon->setAttribute('class', 'form-control');
+
+        $name = new Element\Text('name');
+        $name->setLabel('Pokemon');
+        $name->setAttribute('class', 'form-control');
+
+        $description = new Element\Text('description');
+        $description->setLabel('Description');
+        $description->setAttribute('class', 'form-control');
+
+        $type = new Element\Text('type');
+        $type->setLabel('Type');
+        $type->setAttribute('class', 'form-control');
+
+        $evolution = new Element\Text('evolution');
+        $evolution->setLabel('Evolution');
+        $evolution->setAttribute('class', 'form-control');
+
+        $image = new Element\Image('image');
+        $image->setLabel('Evolution');
+        $image->setAttribute('class', 'form-control');
+
+        $submit = new Element\Submit('submit');
+        $submit->setValue('Créer');
+        $submit->setAttribute('class', 'btn btn-primary');
+
+        $this->add($idPokemon);
+        $this->add($name);
+        $this->add($description);
+        $this->add($type);
+        $this->add($evolution);
+        $this->add($image);
+        $this->add($submit);
+    }
+}
