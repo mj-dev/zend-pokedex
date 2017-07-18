@@ -3,11 +3,12 @@
 namespace Pokedex\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
+use Zend\View\Model\ViewModel;
 
-class SkeletonController extends AbstractActionController
+class PokedexController extends AbstractActionController
 {
     public function indexAction()
     {
-        return [];
+        return new ViewModel();
     }
 }

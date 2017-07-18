@@ -1,37 +1,37 @@
 <?php
 namespace Pokedex;
 
+use Zend\Router\Http\Literal;
+use Zend\Router\Http\Segment;
 use Zend\ServiceManager\Factory\InvokableFactory;
 
 return [
     'controllers' => [
         'factories' => [
-            Controller\SkeletonController::class => InvokableFactory::class,
+            Controller\PokedexController::class => InvokableFactory::class,
         ],
     ],
-    'router' => [
-        'routes' => [
-            'module-name-here' => [
-                'type'    => 'Literal',
-                'options' => [
-                    // Change this to something specific to your module
-                    'route'    => '/module-specific-root',
-                    'defaults' => [
-                        'controller'    => Controller\SkeletonController::class,
-                        'action'        => 'index',
-                    ],
-                ],
-                'may_terminate' => true,
-                'child_routes' => [
-                    // You can place additional routes that match under the
-                    // route defined above here.
-                ],
-            ],
-        ],
-    ],
+    'router' => array(
+        'routes' => array(
+            'pokedex' => array(
+                'type'    => 'segment',
+                'options' => array(
+                    'route'    => '/pokedex[/:action][/:id]',
+                    'constraints' => array(
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id'     => '[0-9]+',
+                    ),
+                    'defaults' => array(
+                        'controller' => Controller\PokedexController::class,
+                        'action'     => 'index',
+                    ),
+                ),
+            ),
+        ),
+    ),
     'view_manager' => [
         'template_path_stack' => [
-            'Pokedex' => __DIR__ . '/../view',
+            __DIR__ . '/../view',
         ],
     ],
 ];
